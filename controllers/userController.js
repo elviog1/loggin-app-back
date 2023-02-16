@@ -90,7 +90,7 @@ const userController = {
                         const loginUser = {
                             id: user._id,
                             name: user.name,
-                            mail: user.email,
+                            email: user.email,
                             role: user.role,
                             photo:user.photo,
                             country:user.country
@@ -114,7 +114,7 @@ const userController = {
                         const loginUser = {
                             id: user._id,
                             name: user.name,
-                            mail: user.email,
+                            email: user.email,
                             role: user.role,
                             photo:user.photo,
                             country:user.country
@@ -172,9 +172,9 @@ const userController = {
         }
     },
     signOut: async(req,res) =>{
-        const {id} = req.params
+        const {email} = req.params
         try {
-            let user = await User.findOne({_id:id})
+            let user = await User.findOne({email:email})
             if(user){
                 user.logged = false
                 await user.save()

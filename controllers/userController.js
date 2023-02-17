@@ -2,6 +2,7 @@ const User = require('../models/User')
 const crypto = require('crypto')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const sendMail = require('../config/sendMail')
 const userController = {
     signUp: async(req,res) =>{
         let {name,lastName,email,password,country,from,role,photo} = req.body
@@ -14,9 +15,11 @@ const userController = {
                 if(from === 'form'){
                     password= bcryptjs.hashSync(password,10)
                     user = await new User({name,lastName,email,password:[password],country,role,from:[from],logged,verified,code,photo}).save()
+                    sendMail(email,code)
                     res.status(200).json({
                         message: 'user sign up from FORM',
-                        success: true
+                        success: true,
+                        code:code
                     })
                 }else{
                     password = bcryptjs.hashSync(password,10)
@@ -155,7 +158,7 @@ const userController = {
             if(user){
                 user.verified = true
                 await user.save()
-                res.status(200).redirect(301, 'http://localhost:4000')
+                res.status(200).redirect(301, 'http://localhost:5173')
             }else{
                 res.status(400).json({
                     message: "error, this email doesn't have an acoount",

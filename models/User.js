@@ -13,6 +13,6 @@ const userSchema = new mongoose.Schema({
     verified: {type: Boolean, required: true},
     code: {type: String, required: true},
 })
-const User = mongoose.model('user', userSchema)
+const User = mongoose.model('users', userSchema)
 
 module.exports = User

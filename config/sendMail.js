@@ -13,7 +13,7 @@ const sendMail = async(email,code) =>{
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
-        subject: "title",
+        subject: "Register Login-app",
         html: `
         <main>
             <div>

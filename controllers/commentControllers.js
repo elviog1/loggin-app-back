@@ -2,11 +2,11 @@ const Comment = require('../models/Comment')
 
 const commentControllers = {
     createComment: async(req,res)=>{
-        const {comment,user} = req.body
+        const {comment,user,date} = req.body
         // let user = req.user.id
         console.log(req)
         try {
-            await new Comment({comment,user}).save()
+            await new Comment({comment,user,date}).save()
             res.status(200).json({
                 message: 'Comment created',
                 success:true

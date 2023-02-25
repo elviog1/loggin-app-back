@@ -19,7 +19,7 @@ const sendMail = async(email,code) =>{
             <div>
                 <h1>Hello, to finish with the registration you just have to enter the following link. Welcome to Login-app !
                 </h1>
-                <a href='https://login-app-back.onrender.com/auth/verify/${code}'>Click here</a>
+                <a target="_blank" href='https://login-app-back.onrender.com/auth/verify/${code}'>Click here</a>
             </div>
         </main>
         `

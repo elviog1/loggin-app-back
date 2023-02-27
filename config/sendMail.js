@@ -1,3 +1,40 @@
+// const nodemailer = require('nodemailer')
+// const sendMail = async(email,code) =>{
+//     const transport = nodemailer.createTransport({
+//         service: 'gmail',
+//             auth: {
+//                 user: process.env.EMAIL,
+//                 pass:process.env.PASS
+//             },
+//             tls: {
+//                 rejectUnauthorized: false
+//             }
+//     })
+//     const mailOptions = {
+//         from: process.env.EMAIL,
+//         to: email,
+//         subject: "Register Login-app",
+//         html: `
+//         <main>
+//             <div>
+//                 <h1>Hello, to finish with the registration you just have to enter the following link. Welcome to Login-app !
+//                 </h1>
+//                 <a target="_blank" href='https://login-app-back.onrender.com/auth/verify/${code}'>Click here</a>
+//             </div>
+//         </main>
+//         `
+//     }
+//     await transport.sendMail(mailOptions,(error,response)=>{
+//         if(error){
+//             console.log(error)
+//         }else{
+//             console.log(response)
+//         }
+//     })
+// }
+
+// module.exports =sendMail
+
 const nodemailer = require('nodemailer')
 const {google} = require('googleapis')
 const Oauth2 = google.auth.OAuth2
@@ -8,9 +45,12 @@ const sendMail = async(email,code) => {
         process.env.SECRET_CLIENT,
         process.env.GOOGLE_URL
     )
+
+    // configurar refresh token 
     client.setCredentials({
         refresh_token: process.env.REFRESH_TOKEN
     })
+    // codigo nuevo de acceso q mi app lo calcula
     const accessToken = client.getAccessToken()
 
     const transport = nodemailer.createTransport({
@@ -35,7 +75,7 @@ const sendMail = async(email,code) => {
         html: `
         <main>
             <div>
-                <h1>Hello ${email}, to finish with the registration you just have to enter the following link. Welcome to Login-app !
+                <h1>Hello, to finish with the registration you just have to enter the following link. Welcome to Login-app !
                 </h1>
                 <a target="_blank" href='https://login-app-back.onrender.com/auth/verify/${code}'>Click here</a>
             </div>

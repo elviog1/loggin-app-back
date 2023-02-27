@@ -24,7 +24,7 @@ const commentControllers = {
         let comments
         try {
             comments = await Comment.find(query)
-            .populate('user',{photo:1,name:1})
+            .populate('user',{photo:1,name:1,lastName:1,role:1,email:1,role:1,country:1})
             res.status(200).json({
                 message: "All comment found",
                 response: comments,

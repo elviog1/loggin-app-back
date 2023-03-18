@@ -10,7 +10,7 @@ const userController = {
             let user = await User.findOne({email})
             if(!user){
                 let logged = false
-                let verified = false
+                let verified = true
                 let code = crypto.randomBytes(15).toString('hex')
                 if(from === 'form'){
                     password= bcryptjs.hashSync(password,10)
@@ -188,6 +188,8 @@ const userController = {
                     message: "User disconnected",
                     succes: true
                 })
+            }else{
+                console.log("no existe")
             }
         } catch (error) {
             console.log(error)

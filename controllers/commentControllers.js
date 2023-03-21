@@ -60,6 +60,31 @@ const commentControllers = {
                 success: false
             })
         }
+    },
+    updateComment: async(req,res) =>{
+        const {id} = req.params
+        const updateComment =req.body
+        try {
+            const comment = await Comment.findOneAndUpdate({_id:id},updateComment,{new:true})
+            if(comment){
+                res.status(200).json({
+                    message: 'Comment update successfully',
+                    success:true,
+                    response:comment
+                })
+            }else{
+                res.status(404).json({
+                    message: "Couldn't found comment",
+                    success:false,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).json({
+                message: error.message,
+                success: false,
+        })
+        }
     }
 }
 

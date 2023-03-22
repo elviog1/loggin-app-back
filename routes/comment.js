@@ -7,7 +7,7 @@ const {createComment, getAllComment, deleteComment, updateComment} = require('..
 router.get('/',getAllComment)
 router.post('/',createComment)
 router.delete('/:id',deleteComment)
-router.patch('/:id',updateComment)
+router.put('/:id',updateComment)
 
 // router.post('/',passport.authenticate('jwt',{session:false}),createComment)
 module.exports = router
